@@ -13,7 +13,7 @@ class ToDoItem {
 	var date: Date
 	var isComplete: Bool
 	
-	init(content: String) {
+	fileprivate init(content: String) {
 		self.id = "\(Date())"
 		self.content = content
 		self.date = Date()
@@ -22,17 +22,24 @@ class ToDoItem {
 }
 
 class ToDoVM {
-	var items = [ToDoVM]()
+	var items = [ToDoItem]()
 	
 	func getItems() {
-		
+		// TODO: Load data from DB
+		// Test Data
+		for i in 0..<5 {
+			items.append(ToDoItem(content: "Test Item \(i)"))
+		}
 	}
 	
-	func addItem() {
+	func addItem(text: String) -> ToDoItem {
+		let item = ToDoItem(content: text)
+		items.append(item)
 		
+		return item
 	}
 	
-	func removeItem() {
-		
+	func removeItem(idx: Int) {
+		items.remove(at: idx)
 	}
 }
