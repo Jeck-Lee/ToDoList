@@ -17,6 +17,7 @@
 		3D574F002A37F65E002377E4 /* ToDoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D574EFF2A37F65E002377E4 /* ToDoVM.swift */; };
 		3D574F0B2A39E042002377E4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3D574F0A2A39E042002377E4 /* Realm */; };
 		3D574F0D2A39E042002377E4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D574F0C2A39E042002377E4 /* RealmSwift */; };
+		3D574F102A39EAB4002377E4 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D574F0F2A39EAB4002377E4 /* Array+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		3D574EEF2A37F56D002377E4 /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		3D574EF12A37F56D002377E4 /* ToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3D574EFF2A37F65E002377E4 /* ToDoVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoVM.swift; sourceTree = "<group>"; };
+		3D574F0F2A39EAB4002377E4 /* Array+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				3D574ED42A37F56C002377E4 /* ToDoListApp.swift */,
 				3D574ED62A37F56C002377E4 /* ContentView.swift */,
 				3D574ED82A37F56D002377E4 /* Assets.xcassets */,
+				3D574F0E2A39EA70002377E4 /* Extension */,
 				3D574EFE2A37F646002377E4 /* ViewModel */,
 				3D574EDA2A37F56D002377E4 /* Preview Content */,
 			);
@@ -140,6 +143,14 @@
 				3D574EFF2A37F65E002377E4 /* ToDoVM.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3D574F0E2A39EA70002377E4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3D574F0F2A39EAB4002377E4 /* Array+Ext.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D574ED72A37F56C002377E4 /* ContentView.swift in Sources */,
+				3D574F102A39EAB4002377E4 /* Array+Ext.swift in Sources */,
 				3D574ED52A37F56C002377E4 /* ToDoListApp.swift in Sources */,
 				3D574F002A37F65E002377E4 /* ToDoVM.swift in Sources */,
 			);

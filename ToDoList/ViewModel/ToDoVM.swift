@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import RealmSwift
 
-class ToDoItem {
-	var id: String
-	var content: String
-	var date: Date
-	var isComplete: Bool
+class ToDoItem: Object {
+	@Persisted(primaryKey: true) var id: String
+	@Persisted var content: String
+	@Persisted var date: Date
+	@Persisted var isComplete: Bool
 	
-	fileprivate init(content: String) {
+	convenience init(content: String) {
+		self.init()
 		self.id = "\(Date())"
 		self.content = content
 		self.date = Date()
@@ -25,21 +27,35 @@ class ToDoVM {
 	var items = [ToDoItem]()
 	
 	func getItems() {
-		// TODO: Load data from DB
-		// Test Data
-		for i in 0..<5 {
-			items.append(ToDoItem(content: "Test Item \(i)"))
+		guard let realm = try? Realm() else {
+			return
 		}
+		
+		items = Array(realm.objects(ToDoItem.self))
 	}
 	
 	func addItem(text: String) -> ToDoItem {
 		let item = ToDoItem(content: text)
 		items.append(item)
 		
+		guard let realm = try? Realm() else {
+			return item
+		}
+		try? realm.write {
+			realm.add(item)
+		}
+		
 		return item
 	}
 	
 	func removeItem(idx: Int) {
+		guard let realm = try? Realm(), let item = items[safe: idx] else {
+			return
+		}
 		items.remove(at: idx)
+		
+		try? realm.write {
+			realm.delete(item)
+		}
 	}
 }
