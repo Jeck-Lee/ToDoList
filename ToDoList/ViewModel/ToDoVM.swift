@@ -9,6 +9,8 @@ import Foundation
 import RealmSwift
 
 class ToDoItem: Object {
+	private static var realm = try! Realm()
+	
 	@Persisted(primaryKey: true) var id: String
 	@Persisted var content: String
 	@Persisted var date: Date
@@ -21,41 +23,56 @@ class ToDoItem: Object {
 		self.date = Date()
 		self.isComplete = false
 	}
+	
+	// MARK: Realm
+	fileprivate static func findAll() -> Results<ToDoItem> {
+		realm.objects(ToDoItem.self)
+	}
+	fileprivate static func addItem(_ item: ToDoItem) {
+		try! realm.write {
+			realm.add(item)
+		}
+	}
+	fileprivate static func removeItem(_ item: ToDoItem) {
+		try! realm.write {
+			realm.delete(item)
+		}
+	}
+	func editItem(content: String? = nil, date: Date? = nil, isComplete: Bool? = nil) {
+		try! ToDoItem.realm.write {
+			if let content = content {
+				self.content = content
+			}
+			if let date = date {
+				self.date = date
+			}
+			if let isComplete = isComplete {
+				self.isComplete = isComplete
+			}
+		}
+	}
 }
 
-class ToDoVM {
+class ToDoVM: ObservableObject {
 	var items = [ToDoItem]()
 	
 	func getItems() {
-		guard let realm = try? Realm() else {
-			return
-		}
-		
-		items = Array(realm.objects(ToDoItem.self))
+		items = Array(ToDoItem.findAll())
 	}
 	
 	func addItem(text: String) -> ToDoItem {
 		let item = ToDoItem(content: text)
 		items.append(item)
-		
-		guard let realm = try? Realm() else {
-			return item
-		}
-		try? realm.write {
-			realm.add(item)
-		}
+		ToDoItem.addItem(item)
 		
 		return item
 	}
 	
 	func removeItem(idx: Int) {
-		guard let realm = try? Realm(), let item = items[safe: idx] else {
+		guard let item = items[safe: idx] else {
 			return
 		}
 		items.remove(at: idx)
-		
-		try? realm.write {
-			realm.delete(item)
-		}
+		ToDoItem.removeItem(item)
 	}
 }
