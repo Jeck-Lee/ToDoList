@@ -40,12 +40,17 @@ struct ContentView: View {
 	}
 	
 	@State var presentingModal = false
+	@State var preItem: ToDoItem? = nil
 	
 	var body: some View {
 		
 		VStack {
 			List{ ForEach(vm.items, id: \.self) { item in
 				ToDoCell(item: item)
+					.onTapGesture {
+						preItem = item
+						presentingModal.toggle()
+					}
 			}.onDelete { indexSet in
 				delete(at: indexSet)
 			}}.listStyle(.plain)
@@ -55,14 +60,16 @@ struct ContentView: View {
 				}
 			
 			Button(action: {
-				self.presentingModal.toggle()
+				presentingModal.toggle()
 			}) {
 				HStack {
 					Spacer()
 					Image("add")
 					Spacer()
 				}
-			}.sheet(isPresented: $presentingModal) { AddItemView(vm: vm) }
+			}.sheet(isPresented: $presentingModal) {
+				AddItemView(vm: vm, preItem: preItem)
+			}
 				.frame(height: 44)
 				.background(ColorFile.button.color)
 				.tint(.white)

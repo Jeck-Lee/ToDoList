@@ -13,6 +13,7 @@ struct AddItemView: View {
 	@State private var todo: String = ""
 	
 	var vm: ToDoVM
+	var preItem: ToDoItem?
 	
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -21,13 +22,21 @@ struct AddItemView: View {
 			TextField("Enter your ToDo", text: $todo)
 				.padding(.top, 12)
 				.padding(.bottom, 12)
-					.background(.white)
-					.frame(alignment: .leading)
-					.padding(.leading, 18)
-					.padding(.trailing, 18)
+				.background(.white)
+				.frame(alignment: .leading)
+				.padding(.leading, 18)
+				.padding(.trailing, 18)
+				.onAppear(perform: {
+					todo = preItem?.content ?? ""
+				})
 			Spacer()
 			Button(action: {
-				let _ = vm.addItem(text: todo)
+				if let item = preItem {
+					item.editItem(content: todo)
+				}
+				else {
+					let _ = vm.addItem(text: todo)
+				}
 				dismiss()
 			}) {
 				HStack {
