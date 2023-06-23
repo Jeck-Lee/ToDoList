@@ -44,9 +44,11 @@ struct ContentView: View {
 	var body: some View {
 		
 		VStack {
-			List(vm.items, id: \.self) { item in
+			List{ ForEach(vm.items, id: \.self) { item in
 				ToDoCell(item: item)
-			}.listStyle(.plain)
+			}.onDelete { indexSet in
+				delete(at: indexSet)
+			}}.listStyle(.plain)
 				.scrollContentBackground(.hidden)
 				.refreshable {
 					vm.getItems()
@@ -67,6 +69,12 @@ struct ContentView: View {
 				.cornerRadius(18)
 				.padding(18)
 		}.background(ColorFile.background.color)
+	}
+	
+	private func delete(at offsets: IndexSet) {
+		if let index = offsets.first {
+			vm.removeItem(idx: index)
+		}
 	}
 }
 

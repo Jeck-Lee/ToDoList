@@ -72,7 +72,9 @@ class ToDoVM: ObservableObject {
 		guard let item = items[safe: idx] else {
 			return
 		}
-		items.remove(at: idx)
+		// UI 업데이트는 ContentView의 List에서 onDelete 할 때 이뤄지므로 DB 데이터만 삭제해주면 됨
+		// 중복 삭제할 경우 "Object has been deleted or invalidated." error
+//		items.remove(at: idx)
 		ToDoItem.removeItem(item)
 	}
 }
