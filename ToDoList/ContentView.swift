@@ -41,7 +41,10 @@ struct ContentView: View {
 		vm.getItems()
 	}
 	
+	@State var presentingModal = false
+	
 	var body: some View {
+		
 		VStack {
 			List(vm.items, id: \.self) { item in
 				ToDoCell(item: item)
@@ -49,14 +52,15 @@ struct ContentView: View {
 				.scrollContentBackground(.hidden)
 			
 			Button(action: {
-				print("\(#file.components(separatedBy: "/").last ?? "")(\(#line)) \(#function)")
+				self.presentingModal.toggle()
 			}) {
 				HStack {
 					Spacer()
 					Image("add")
 					Spacer()
 				}
-			}.frame(height: 44)
+			}.sheet(isPresented: $presentingModal) { AddItemView() }
+				.frame(height: 44)
 				.background(ColorFile.button.color)
 				.tint(.white)
 				.cornerRadius(18)

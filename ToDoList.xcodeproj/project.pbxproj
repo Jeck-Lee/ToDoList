@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D3719302A4512E10028C869 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D37192F2A4512E10028C869 /* AddItemView.swift */; };
 		3D574ED52A37F56C002377E4 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D574ED42A37F56C002377E4 /* ToDoListApp.swift */; };
 		3D574ED72A37F56C002377E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D574ED62A37F56C002377E4 /* ContentView.swift */; };
 		3D574ED92A37F56D002377E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D574ED82A37F56D002377E4 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D37192F2A4512E10028C869 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		3D574ED12A37F56C002377E4 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D574ED42A37F56C002377E4 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		3D574ED62A37F56C002377E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				3D574ED42A37F56C002377E4 /* ToDoListApp.swift */,
 				3D574ED62A37F56C002377E4 /* ContentView.swift */,
+				3D37192F2A4512E10028C869 /* AddItemView.swift */,
 				3D574ED82A37F56D002377E4 /* Assets.xcassets */,
 				3D574F132A3A9DCA002377E4 /* ColorFile.swift */,
 				3D574F0E2A39EA70002377E4 /* Extension */,
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D574ED72A37F56C002377E4 /* ContentView.swift in Sources */,
+				3D3719302A4512E10028C869 /* AddItemView.swift in Sources */,
 				3D574F102A39EAB4002377E4 /* Array+Ext.swift in Sources */,
 				3D574ED52A37F56C002377E4 /* ToDoListApp.swift in Sources */,
 				3D574F142A3A9DCA002377E4 /* ColorFile.swift in Sources */,
