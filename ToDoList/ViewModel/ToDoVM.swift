@@ -54,7 +54,7 @@ class ToDoItem: Object {
 }
 
 class ToDoVM: ObservableObject {
-	var items = [ToDoItem]()
+	@Published var items = [ToDoItem]()
 	
 	func getItems() {
 		items = Array(ToDoItem.findAll())

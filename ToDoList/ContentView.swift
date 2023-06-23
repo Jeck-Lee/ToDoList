@@ -18,9 +18,7 @@ struct ToDoCell: View {
 				.padding(EdgeInsets(top: 0, leading: 18, bottom: 0, trailing: 0))
 			Spacer()
 			Button(action: {
-				try! Realm().write {
-					item.isComplete.toggle()
-				}
+				item.editItem(isComplete: !item.isComplete)
 			}) {
 				Image(item.isComplete ? "check_box-check" :  "check_box")
 			}.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 18))
@@ -35,7 +33,7 @@ struct ToDoCell: View {
 }
 
 struct ContentView: View {
-	let vm = ToDoVM()
+	@ObservedObject var vm = ToDoVM()
 	
 	init() {
 		vm.getItems()
@@ -50,6 +48,9 @@ struct ContentView: View {
 				ToDoCell(item: item)
 			}.listStyle(.plain)
 				.scrollContentBackground(.hidden)
+				.refreshable {
+					vm.getItems()
+				}
 			
 			Button(action: {
 				self.presentingModal.toggle()
@@ -59,7 +60,7 @@ struct ContentView: View {
 					Image("add")
 					Spacer()
 				}
-			}.sheet(isPresented: $presentingModal) { AddItemView() }
+			}.sheet(isPresented: $presentingModal) { AddItemView(vm: vm) }
 				.frame(height: 44)
 				.background(ColorFile.button.color)
 				.tint(.white)

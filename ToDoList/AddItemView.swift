@@ -12,6 +12,8 @@ struct AddItemView: View {
 	@Environment(\.dismiss) var dismiss
 	@State private var todo: String = ""
 	
+	var vm: ToDoVM
+	
 	var body: some View {
 		VStack(alignment: .leading) {
 			Spacer()
@@ -25,6 +27,7 @@ struct AddItemView: View {
 					.padding(.trailing, 18)
 			Spacer()
 			Button(action: {
+				let _ = vm.addItem(text: todo)
 				dismiss()
 			}) {
 				HStack {
@@ -45,6 +48,6 @@ struct AddItemView: View {
 
 struct AddItemView_Previews: PreviewProvider {
 	static var previews: some View {
-		AddItemView()
+		AddItemView(vm: ToDoVM())
 	}
 }
